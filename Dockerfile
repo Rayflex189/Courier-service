@@ -5,7 +5,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy your project files into the image
-COPY . .
+COPY shipping_site/ /app/
 
 # Install dependencies (build.sh handles this)
 RUN chmod +x /shipping_site/build.sh
