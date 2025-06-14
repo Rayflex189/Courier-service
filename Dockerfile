@@ -18,4 +18,4 @@ RUN chmod +x /shipping_site/entrypoint.sh
 EXPOSE 8080
 
 # Use entrypoint.sh to run commands
-CMD ["/app/entrypoint.sh"]
+CMD ["/shipping_site/entrypoint.sh"]
