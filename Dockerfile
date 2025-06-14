@@ -5,17 +5,17 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Copy your project files into the image
-COPY shipping_site/ /app/
+COPY . .
 
 # Install dependencies (build.sh handles this)
-RUN chmod +x /shipping_site/build.sh
-RUN /shipping_site/build.sh
+RUN chmod +x /app/build.sh
+RUN /app/build.sh
 
 # Make the entrypoint script executable
-RUN chmod +x /shipping_site/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # Expose Django port
 EXPOSE 8080
 
 # Use entrypoint.sh to run commands
-CMD ["/shipping_site/entrypoint.sh"]
+CMD ["/app/entrypoint.sh"]
