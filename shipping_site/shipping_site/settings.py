@@ -11,24 +11,28 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+from decouple import config
+import dj_database_url
+
 import os
 
 
 import dj_database_url
 
+from decouple import config
+
+db_url = config('DATABASE_URL', default=None)
+if isinstance(db_url, bytes):
+    db_url = db_url.decode("utf-8")
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'swiftship_dbs',
-        'USER': 'swiftship_dbs_user',
-        'PASSWORD': 'KhFiwR0GiHhkNfz84fPns9bBcXLTRZbf',
-        'HOST': 'dpg-curkuaa3esus73dq18kg-a.oregon-postgres.render.com',  # Check this
-        'PORT': '5432',
-    },
-     'OPTIONS': {
-            'sslmode': 'require',
-        },
+    'default': dj_database_url.parse(db_url, conn_max_age=600)
 }
+
+# Add SSL mode if using Postgres
+if 'postgres' in DATABASES['default']['ENGINE']:
+    DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
