@@ -8,14 +8,14 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies (build.sh handles this)
-RUN chmod +x /app/build.sh
-RUN /app/build.sh
+RUN chmod +x /build.sh
+RUN /build.sh
 
 # Make the entrypoint script executable
-RUN chmod +x /app/entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Expose Django port
 EXPOSE 8080
 
 # Use entrypoint.sh to run commands
-CMD ["/app/entrypoint.sh"]
+CMD ["/entrypoint.sh"]
