@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Make sure scripts are executable and run the build
-RUN chmod +x build.sh && ./build.sh
+RUN chmod +x build.sh && bash -x build.sh
 
 RUN chmod +x entrypoint.sh
 
