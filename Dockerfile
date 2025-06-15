@@ -4,13 +4,11 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy only necessary files first
-COPY build.sh /build.sh
-COPY entrypoint.sh /entrypoint.sh
+# Copy project files
 COPY . .
 
-RUN chmod +x /build.sh
-RUN /build.sh
+# Make sure scripts are executable and run the build
+RUN chmod +x /build.sh && /build.sh
 
 RUN chmod +x /entrypoint.sh
 
